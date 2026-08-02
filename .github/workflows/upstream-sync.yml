@@ -1,0 +1,54 @@
+name: sync upstream
+
+# Daily sync from ayghri/i-have-adhd. Merges upstream main into an
+# automatic-update branch and opens a PR so CI (plugin load check, cursor
+# mirror check) gates the merge; auto-merge lands it once checks pass.
+# A conflicted merge fails the job instead of pushing anything — bad code
+# never reaches a branch. Uses a real merge, not squash: squashing would
+# drop upstream ancestry and re-conflict every future sync.
+# The patch-version bump makes `claude plugin update` pick up the sync and
+# guarantees the plugin-load check triggers on every sync PR.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.NIX_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.NIX_TOKEN }}
+      - name: Merge upstream into automatic-update
+        id: merge
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/ayghri/i-have-adhd.git
+          git fetch upstream main
+          if git merge-base --is-ancestor upstream/main HEAD; then
+            echo "Already up to date with upstream."
+            exit 0
+          fi
+          git checkout -B automatic-update
+          git merge --no-edit upstream/main
+          current=$(jq -r .version .claude-plugin/plugin.json)
+          next="${current%.*}.$(( ${current##*.} + 1 ))"
+          sed -i "s/\"version\": \"$current\"/\"version\": \"$next\"/" \
+            .claude-plugin/plugin.json .codex-plugin/plugin.json gemini-extension.json
+          git commit -am "Bump version to $next for upstream sync"
+          git push --force origin automatic-update
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      - name: Open PR and enable auto-merge
+        if: steps.merge.outputs.pushed == 'true'
+        run: |
+          pr=$(gh pr list --head automatic-update --state open --json url -q '.[0].url')
+          if [ -z "$pr" ]; then
+            pr=$(gh pr create --head automatic-update --title "automatic update" \
+              --body "Daily sync from ayghri/i-have-adhd main.")
+          fi
+          gh pr merge --auto --merge --delete-branch "$pr"
