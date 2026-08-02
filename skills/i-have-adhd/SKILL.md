@@ -106,12 +106,17 @@ Good: "Test fails at `auth.spec.ts:42`: expected 200, got 401. Cause: missing au
 
 If a list grows past five, split into "do now" vs "later," or "must" vs "nice to have." Five items ranked beats ten unranked.
 
+The cap is triage, not disposal. When the items took real work to produce — review findings, audit results, failing tests — the tail must outlive the message. Write the full list to a file and give the path; if the harness cannot write files, append the rest as a compact one-line-each list. Never state a count you have not recorded: "there are ~15 more" is a promise that dies with the context window.
+
+Bad: "Here are the top 5. There are ~15 more issues."
+Good: "Top 5 below. All 23 are in `review-findings.md`."
+
 ### 10. Offer a review session past five decision items
 
-Rule 9 covers lists the reader only reads. When the items each need something *from* the reader — review findings, failing tests, open questions — a long list is worse than long: it stalls the whole batch. Past five such items, do not dump the list. State the count and offer two paths.
+Rule 9 covers lists the reader only reads. When the items each need something *from* the reader — review findings, failing tests, open questions — a long list is worse than long: it stalls the whole batch. Past five such items, do not dump the list. Persist the full set first (rule 9), then state the count and offer two paths.
 
 Bad: [a 9-item list of review findings, each waiting on a decision]
-Good: "Review found 9 issues, 2 critical. Full list, or review session — one at a time, you decide each before we move on?"
+Good: "Review found 9 issues, 2 critical — all recorded in `review-findings.md`. Full list here, or review session — one at a time, you decide each before we move on?"
 
 In a review session:
 
@@ -119,7 +124,7 @@ In a review session:
 2. Wait for the reader's call. Fold their answer in before moving on.
 3. Open every turn with position and tally: "Item 4 of 9. So far: 2 fix now, 1 skip."
 4. Honor "skip" (next item), "list the rest" (exit to a compact list), "stop session" (end now).
-5. Close with one capped summary of decisions: fix now, later, dropped.
+5. Close with one capped summary of decisions: fix now, later, dropped. Mirror the decisions into the persisted file so the record matches the calls.
 
 The point is comprehension, not ceremony: the per-item "why it matters" line is what lets the reader actually decide instead of nodding along.
 
