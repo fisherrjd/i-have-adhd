@@ -22,7 +22,10 @@ claude plugin list
 
 ```bash
 claude plugin marketplace update i-have-adhd
+claude plugin update i-have-adhd@i-have-adhd
 ```
+
+The full `plugin@marketplace` form is required; `claude plugin update i-have-adhd` alone reports "not found". Restart to apply.
 
 ### Uninstall
 
@@ -577,7 +580,7 @@ In Claude Code, no middle ground: if you did not turn it on, it is off.
 
 **`/i-have-adhd` not in autocomplete.** Restart the agent. The plugin index is read at startup.
 
-**Always-on flag has no effect.** Update the plugin (`claude plugin marketplace update i-have-adhd`) and restart. Hooks are read at startup, and the flag needs the plugin version that ships `hooks/hooks.json`.
+**Always-on flag has no effect.** Update the plugin (`claude plugin marketplace update i-have-adhd`, then `claude plugin update i-have-adhd@i-have-adhd`) and restart. Hooks are read at startup, and the flag needs the plugin version that ships `hooks/hooks.json`.
 
 **`claude plugin marketplace add` fails.** Use the `owner/repo` form. A local path must point at the repo root, not `.claude-plugin/`.
 
