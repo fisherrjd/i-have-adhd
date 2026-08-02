@@ -1,11 +1,11 @@
 <p align="center">
-    <a href="https://github.com/ayghri/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
+    <a href="https://github.com/fisherrjd/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
 </p>
 <p align="center">
   <strong align="center">Respostas amigáveis para quem tem TDAH. Sem precisar de diagnóstico!</strong>
 </p>
 <p align="center">
-  <a href="/LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="Licença"></a>
+  <a href="/LICENSE"><img src="https://img.shields.io/github/license/fisherrjd/i-have-adhd?style=flat" alt="Licença"></a>
 </p>
 
 <p align="center">
@@ -24,13 +24,13 @@
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
+claude plugin marketplace add fisherrjd/i-have-adhd
 claude plugin install i-have-adhd@i-have-adhd
 ```
 
 Depois digite `/i-have-adhd`. Não precisa clonar nada localmente: o Claude Code baixa o repositório e o mantém atualizado.
 
-Quer ativar em toda sessão? `touch ~/.claude/.i-have-adhd-always` (veja o [INSTALL.md](/INSTALL.md)).
+Este fork vem sempre ativo por padrão: toda sessão começa com o conjunto de regras carregado. Para desativar, use `touch ~/.claude/.i-have-adhd-off` (veja o [INSTALL.md](/INSTALL.md)).
 
 </details>
 
@@ -38,7 +38,7 @@ Quer ativar em toda sessão? `touch ~/.claude/.i-have-adhd-always` (veja o [INST
 <summary><strong>Codex</strong></summary>
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
+codex plugin marketplace add fisherrjd/i-have-adhd --ref main
 codex plugin add i-have-adhd@i-have-adhd
 ```
 
@@ -47,6 +47,14 @@ Depois digite `$i-have-adhd` para aplicar o estilo de resposta explicitamente. A
 </details>
 
 As instruções de instalação para outros assistentes de código estão no [INSTALL.md](/INSTALL.md).
+
+## Por que este fork
+
+O [i-have-adhd do ayghri](https://github.com/ayghri/i-have-adhd) foi um salva-vidas, mas precisava de ajustes para o jeito como o meu cérebro funciona. Mensagens mais curtas, sozinhas, não bastavam: às vezes eu preciso de um empurrão para realmente revisar o que está na minha frente, especialmente as partes maiores, em vez de só ir concordando. Este fork adiciona esse reforço:
+
+- **Sempre ativo por padrão.** O conjunto de regras carrega no início de toda sessão; desative com `touch ~/.claude/.i-have-adhd-off`.
+- **Sessões de revisão (regra 10).** Passando de cinco itens de decisão, o assistente se oferece para percorrê-los um de cada vez em vez de despejar a lista inteira.
+- **Nada se perde (regra 9).** Listas limitadas precisam registrar o conjunto completo em um arquivo, para que "tem mais 15" seja um caminho, não uma promessa.
 
 ## O que ela faz
 
@@ -85,7 +93,7 @@ Uma skill para o seu assistente de código que impede que ele enterre a resposta
 
 ## As regras
 
-10 regras. Texto completo no [SKILL.md](/skills/i-have-adhd/SKILL.md).
+11 regras. Texto completo no [SKILL.md](/skills/i-have-adhd/SKILL.md).
 
 1. Comece pela próxima ação.
 2. Numere tarefas de múltiplos passos.
@@ -95,8 +103,9 @@ Uma skill para o seu assistente de código que impede que ele enterre a resposta
 6. Estimativas de tempo específicas (minutos, não "um pouco").
 7. Deixe as conquistas visíveis.
 8. Erros relatados de forma objetiva.
-9. Limite listas a 5 itens.
-10. Sem preâmbulo. Sem recapitulação. Sem frases de encerramento.
+9. Limite listas a 5 itens; registre a lista completa em um arquivo.
+10. Passando de 5 itens de decisão, ofereça uma sessão de revisão um de cada vez.
+11. Sem preâmbulo. Sem recapitulação. Sem frases de encerramento.
 
 ## Personalize
 
@@ -112,6 +121,8 @@ claude plugin install i-have-adhd@i-have-adhd
 Reinicie o Claude Code e invoque `/i-have-adhd` de novo.
 
 ## Créditos
+
+Fork de [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd); a estrutura e a maior parte do conjunto de regras são deles.
 
 Baseado livremente em *The Adult ADHD Tool Kit*, de J. Russell Ramsay e Anthony L. Rostain. Adaptado para como um LLM deveria responder, não para como uma pessoa deveria organizar o dia.
 

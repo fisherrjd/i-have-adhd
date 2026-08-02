@@ -1,11 +1,11 @@
 <p align="center">
-    <a href="https://github.com/ayghri/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
+    <a href="https://github.com/fisherrjd/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
 </p>
 <p align="center">
   <strong align="center">ADHD に配慮した出力。ADHD の診断は不要です！</strong>
 </p>
 <p align="center">
-  <a href="/LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="ライセンス"></a>
+  <a href="/LICENSE"><img src="https://img.shields.io/github/license/fisherrjd/i-have-adhd?style=flat" alt="ライセンス"></a>
 </p>
 
 <p align="center">
@@ -24,13 +24,13 @@
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
+claude plugin marketplace add fisherrjd/i-have-adhd
 claude plugin install i-have-adhd@i-have-adhd
 ```
 
 続いて `/i-have-adhd` と入力します。ローカルへのクローンは不要です。Claude Code がリポジトリを取得し、最新の状態に保ちます。
 
-すべてのセッションで使いたい場合は、`touch ~/.claude/.i-have-adhd-always` を実行してください（[INSTALL.md](/INSTALL.md) を参照）。
+このフォークはデフォルトで常時オンです。すべてのセッションはルールセットが読み込まれた状態で始まります。無効にするには `touch ~/.claude/.i-have-adhd-off` を実行してください（[INSTALL.md](/INSTALL.md) を参照）。
 
 </details>
 
@@ -38,7 +38,7 @@ claude plugin install i-have-adhd@i-have-adhd
 <summary><strong>Codex</strong></summary>
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
+codex plugin marketplace add fisherrjd/i-have-adhd --ref main
 codex plugin add i-have-adhd@i-have-adhd
 ```
 
@@ -47,6 +47,14 @@ codex plugin add i-have-adhd@i-have-adhd
 </details>
 
 その他のコーディングエージェント向けのインストール手順は [INSTALL.md](/INSTALL.md) にあります。
+
+## このフォークの理由
+
+[ayghri さんの i-have-adhd](https://github.com/ayghri/i-have-adhd) は救世主のような存在でしたが、自分の脳の働き方に合わせた調整が必要でした。メッセージを短くするだけでは十分ではありません。うなずいて流すのではなく、目の前にあるもの、特に大きなかたまりを本当に見直すには、時々ひと押しが必要です。このフォークはその後押しを追加します。
+
+- **デフォルトで常時オン。** ルールセットはすべてのセッションの開始時に読み込まれます。無効にするには `touch ~/.claude/.i-have-adhd-off` を実行してください。
+- **レビューセッション（ルール 10）。** 判断が必要な項目が 5 つを超えたら、アシスタントはリストを一気に出す代わりに、一つずつ確認していくことを提案します。
+- **何も取りこぼさない（ルール 9）。** 項目数を制限したリストは、全項目をファイルに記録しなければなりません。「あと 15 件あります」は、口約束ではなくファイルパスでなければなりません。
 
 ## 機能
 
@@ -85,7 +93,7 @@ codex plugin add i-have-adhd@i-have-adhd
 
 ## ルール
 
-ルールは 10 個です。全文は [SKILL.md](/skills/i-have-adhd/SKILL.md) にあります。
+ルールは 11 個です。全文は [SKILL.md](/skills/i-have-adhd/SKILL.md) にあります。
 
 1. 次に取る行動から始める。
 2. 複数手順のタスクには番号を付ける。
@@ -95,8 +103,9 @@ codex plugin add i-have-adhd@i-have-adhd
 6. 具体的な所要時間を示す（「少し」ではなく分単位）。
 7. 成果を目に見える形で示す。
 8. エラーを淡々と伝える。
-9. リストは 5 項目までにする。
-10. 前置き、要約、締めの言葉を入れない。
+9. リストは 5 項目までにし、全項目をファイルに記録する。
+10. 判断が必要な項目が 5 つを超えたら、一つずつ確認するレビューセッションを提案する。
+11. 前置き、要約、締めの言葉を入れない。
 
 ## カスタマイズ
 
@@ -112,6 +121,8 @@ claude plugin install i-have-adhd@i-have-adhd
 Claude Code を再起動し、`/i-have-adhd` をもう一度呼び出してください。
 
 ## クレジット
+
+[ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) からのフォークです。構成とルールセットの大部分は原作者によるものです。
 
 J. Russell Ramsay と Anthony L. Rostain による *The Adult ADHD Tool Kit* を大まかに参考にしています。人間が一日をどう整理すべきかではなく、LLM がどう応答すべきかに合わせて改変したものです。
 

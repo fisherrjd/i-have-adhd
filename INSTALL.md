@@ -6,7 +6,7 @@
 ### Install
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
+claude plugin marketplace add fisherrjd/i-have-adhd
 claude plugin install i-have-adhd@i-have-adhd
 ```
 
@@ -59,7 +59,7 @@ The hook fires on every session unless the opt-out file exists. Honors `$CLAUDE_
 ### Install
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
+codex plugin marketplace add fisherrjd/i-have-adhd --ref main
 codex plugin add i-have-adhd@i-have-adhd
 ```
 
@@ -103,8 +103,9 @@ The reader has ADHD. Shape every response so it can be acted on:
 6. Give time estimates in concrete units, never "a bit".
 7. After a change, show what now works.
 8. Errors: state location, cause, and fix. No drama.
-9. Cap lists at 5 items.
-10. No preamble, no recaps, no closers.
+9. Cap lists at 5 items; record the full list to a file.
+10. Past 5 decision items, offer a one-at-a-time review session.
+11. No preamble, no recaps, no closers.
 
 Exceptions: explain fully when asked to explain. Confirm before destructive actions. After three failed fixes, stop and name the doubtful assumption. If the request is ambiguous, ask one short question.
 ```
@@ -121,7 +122,7 @@ Zed's Agent reads Agent Skills natively: the same `SKILL.md`, no conversion. (Ze
 In the Agent Panel, open the Skills manager and choose **Create skill from URL** (also in the command palette as `agent: create skill from url`), then paste:
 
 ```
-https://github.com/ayghri/i-have-adhd/blob/main/skills/i-have-adhd/SKILL.md
+https://github.com/fisherrjd/i-have-adhd/blob/main/skills/i-have-adhd/SKILL.md
 ```
 
 Save it in **User** scope for every project, or **Project** scope for one. Then type `/i-have-adhd` in the Agent Panel.
@@ -129,7 +130,7 @@ Save it in **User** scope for every project, or **Project** scope for one. Then 
 Prefer the filesystem? Clone the repo and drop the skill folder into your user skills directory:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/fisherrjd/i-have-adhd
 cp -R i-have-adhd/skills/i-have-adhd ~/.config/zed/skills/
 ```
 
@@ -162,8 +163,9 @@ The reader has ADHD. Shape every response so it can be acted on:
 6. Give time estimates in concrete units, never "a bit".
 7. After a change, show what now works.
 8. Errors: state location, cause, and fix. No drama.
-9. Cap lists at 5 items.
-10. No preamble, no recaps, no closers.
+9. Cap lists at 5 items; record the full list to a file.
+10. Past 5 decision items, offer a one-at-a-time review session.
+11. No preamble, no recaps, no closers.
 
 Exceptions: explain fully when asked to explain. Confirm before destructive actions. After three failed fixes, stop and name the doubtful assumption. If the request is ambiguous, ask one short question.
 ```
@@ -176,7 +178,7 @@ Exceptions: explain fully when asked to explain. Confirm before destructive acti
 ### Install
 
 ```bash
-hermes skills install ayghri/i-have-adhd/skills/i-have-adhd
+hermes skills install fisherrjd/i-have-adhd/skills/i-have-adhd
 ```
 
 Type `/i-have-adhd`. The skill installs into `~/.hermes/skills/` and is exposed as a slash command at the next session start.
@@ -184,9 +186,9 @@ Type `/i-have-adhd`. The skill installs into `~/.hermes/skills/` and is exposed 
 Prefer to browse first? Add this repo as a skill source (a "tap"), then search and install:
 
 ```bash
-hermes skills tap add ayghri/i-have-adhd
+hermes skills tap add fisherrjd/i-have-adhd
 hermes skills search adhd
-hermes skills install ayghri/i-have-adhd/skills/i-have-adhd
+hermes skills install fisherrjd/i-have-adhd/skills/i-have-adhd
 ```
 
 ### Verify
@@ -207,7 +209,7 @@ hermes skills update i-have-adhd
 hermes skills uninstall i-have-adhd
 ```
 
-Or remove the tap too: `hermes skills tap remove ayghri/i-have-adhd`.
+Or remove the tap too: `hermes skills tap remove fisherrjd/i-have-adhd`.
 
 ### Always-on (optional)
 
@@ -226,8 +228,9 @@ The reader has ADHD. Shape every response so it can be acted on:
 6. Give time estimates in concrete units, never "a bit".
 7. After a change, show what now works.
 8. Errors: state location, cause, and fix. No drama.
-9. Cap lists at 5 items.
-10. No preamble, no recaps, no closers.
+9. Cap lists at 5 items; record the full list to a file.
+10. Past 5 decision items, offer a one-at-a-time review session.
+11. No preamble, no recaps, no closers.
 
 Exceptions: explain fully when asked to explain. Confirm before destructive actions. After three failed fixes, stop and name the doubtful assumption. If the request is ambiguous, ask one short question.
 ```
@@ -242,13 +245,13 @@ Pi implements the Agent Skills standard, so the same `SKILL.md` loads directly, 
 ### Install
 
 ```bash
-npx skills add ayghri/i-have-adhd -a pi -y
+npx skills add fisherrjd/i-have-adhd -a pi -y
 ```
 
 Prefer the filesystem? Pi discovers skills in `~/.pi/agent/skills/` and `~/.agents/skills/` (global), and `.pi/skills/` and `.agents/skills/` (project):
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/fisherrjd/i-have-adhd
 mkdir -p ~/.pi/agent/skills
 cp -R i-have-adhd/skills/i-have-adhd ~/.pi/agent/skills/
 ```
@@ -302,8 +305,9 @@ The reader has ADHD. Shape every response so it can be acted on:
 6. Give time estimates in concrete units, never "a bit".
 7. After a change, show what now works.
 8. Errors: state location, cause, and fix. No drama.
-9. Cap lists at 5 items.
-10. No preamble, no recaps, no closers.
+9. Cap lists at 5 items; record the full list to a file.
+10. Past 5 decision items, offer a one-at-a-time review session.
+11. No preamble, no recaps, no closers.
 
 Exceptions: explain fully when asked to explain. Confirm before destructive actions. After three failed fixes, stop and name the doubtful assumption. If the request is ambiguous, ask one short question.
 ```
@@ -319,7 +323,7 @@ Gemini CLI has no plugin marketplace, so there are two native routes: a **custom
 
 ```bash
 mkdir -p ~/.gemini/commands
-curl -fsSL https://raw.githubusercontent.com/ayghri/i-have-adhd/main/skills/i-have-adhd/agents/gemini.toml \
+curl -fsSL https://raw.githubusercontent.com/fisherrjd/i-have-adhd/main/skills/i-have-adhd/agents/gemini.toml \
   -o ~/.gemini/commands/i-have-adhd.toml
 ```
 
@@ -328,7 +332,7 @@ Start a new session, type `/i-have-adhd`. It stays on for that session.
 ### Install (extension, always-on)
 
 ```bash
-gemini extensions install https://github.com/ayghri/i-have-adhd
+gemini extensions install https://github.com/fisherrjd/i-have-adhd
 ```
 
 The extension loads `GEMINI.md`, which imports the full skill, so the rules apply from message one. `git` must be installed.
@@ -366,14 +370,14 @@ Copilot reads Agent Skills natively: the same `SKILL.md`, no conversion. It scan
 ### Install
 
 ```bash
-npx skills add ayghri/i-have-adhd -a github-copilot        # this project
-npx skills add ayghri/i-have-adhd -a github-copilot -g     # all projects
+npx skills add fisherrjd/i-have-adhd -a github-copilot        # this project
+npx skills add fisherrjd/i-have-adhd -a github-copilot -g     # all projects
 ```
 
 Without the CLI, copy the skill folder into any directory Copilot scans:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/fisherrjd/i-have-adhd
 mkdir -p ~/.copilot/skills
 cp -R i-have-adhd/skills/i-have-adhd ~/.copilot/skills/
 ```
@@ -424,8 +428,9 @@ The reader has ADHD. Shape every response so it can be acted on:
 6. Give time estimates in concrete units, never "a bit".
 7. After a change, show what now works.
 8. Errors: state location, cause, and fix. No drama.
-9. Cap lists at 5 items.
-10. No preamble, no recaps, no closers.
+9. Cap lists at 5 items; record the full list to a file.
+10. Past 5 decision items, offer a one-at-a-time review session.
+11. No preamble, no recaps, no closers.
 
 Exceptions: explain fully when asked to explain. Confirm before destructive actions. After three failed fixes, stop and name the doubtful assumption. If the request is ambiguous, ask one short question.
 ```
@@ -438,7 +443,7 @@ Exceptions: explain fully when asked to explain. Confirm before destructive acti
 ### Install
 
 ```bash
-agy plugin install https://github.com/ayghri/i-have-adhd
+agy plugin install https://github.com/fisherrjd/i-have-adhd
 ```
 
 ### Verify
@@ -451,7 +456,7 @@ agy plugin list
 
 ```bash
 agy plugin uninstall i-have-adhd
-agy plugin install https://github.com/ayghri/i-have-adhd
+agy plugin install https://github.com/fisherrjd/i-have-adhd
 ```
 
 ### Uninstall
@@ -479,8 +484,9 @@ The reader has ADHD. Shape every response so it can be acted on:
 6. Give time estimates in concrete units, never "a bit".
 7. After a change, show what now works.
 8. Errors: state location, cause, and fix. No drama.
-9. Cap lists at 5 items.
-10. No preamble, no recaps, no closers.
+9. Cap lists at 5 items; record the full list to a file.
+10. Past 5 decision items, offer a one-at-a-time review session.
+11. No preamble, no recaps, no closers.
 
 Exceptions: explain fully when asked to explain. Confirm before destructive actions. After three failed fixes, stop and name the doubtful assumption. If the request is ambiguous, ask one short question.
 ```
@@ -495,10 +501,10 @@ Works with any harness that reads agent skills. Swap `-a <agent>` for yours.
 ### Install
 
 ```bash
-npx skills add ayghri/i-have-adhd                  # this workspace
-npx skills add ayghri/i-have-adhd -g               # all projects
-npx skills add ayghri/i-have-adhd -a cursor -y     # one agent only
-npx skills add ayghri/i-have-adhd -a opencode -y
+npx skills add fisherrjd/i-have-adhd                  # this workspace
+npx skills add fisherrjd/i-have-adhd -g               # all projects
+npx skills add fisherrjd/i-have-adhd -a cursor -y     # one agent only
+npx skills add fisherrjd/i-have-adhd -a opencode -y
 ```
 
 New agent chat, type `/i-have-adhd`.
@@ -506,7 +512,7 @@ New agent chat, type `/i-have-adhd`.
 Without the CLI, copy the skill folder into whatever path your agent scans:
 
 ```bash
-git clone https://github.com/ayghri/i-have-adhd
+git clone https://github.com/fisherrjd/i-have-adhd
 mkdir -p ~/.cursor/skills     # Cursor. Use .agents/skills for OpenCode, or your agent's own path
 cp -R i-have-adhd/skills/i-have-adhd ~/.cursor/skills/
 ```
@@ -549,8 +555,9 @@ The reader has ADHD. Shape every response so it can be acted on:
 6. Give time estimates in concrete units, never "a bit".
 7. After a change, show what now works.
 8. Errors: state location, cause, and fix. No drama.
-9. Cap lists at 5 items.
-10. No preamble, no recaps, no closers.
+9. Cap lists at 5 items; record the full list to a file.
+10. Past 5 decision items, offer a one-at-a-time review session.
+11. No preamble, no recaps, no closers.
 
 Exceptions: explain fully when asked to explain. Confirm before destructive actions. After three failed fixes, stop and name the doubtful assumption. If the request is ambiguous, ask one short question.
 ```

@@ -1,11 +1,11 @@
 <p align="center">
-    <a href="https://github.com/ayghri/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
+    <a href="https://github.com/fisherrjd/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
 </p>
 <p align="center">
   <strong align="center">对 ADHD 友好的输出。无需确诊 ADHD！</strong>
 </p>
 <p align="center">
-  <a href="/LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="许可证"></a>
+  <a href="/LICENSE"><img src="https://img.shields.io/github/license/fisherrjd/i-have-adhd?style=flat" alt="许可证"></a>
 </p>
 
 <p align="center">
@@ -24,13 +24,13 @@
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
+claude plugin marketplace add fisherrjd/i-have-adhd
 claude plugin install i-have-adhd@i-have-adhd
 ```
 
 然后输入 `/i-have-adhd`。无需在本地克隆：Claude Code 会获取该仓库并保持更新。
 
-想在每次会话中都启用它？运行 `touch ~/.claude/.i-have-adhd-always`（参见 [INSTALL.md](/INSTALL.md)）。
+本 fork 默认全程开启：每次会话开始时都会加载规则集。运行 `touch ~/.claude/.i-have-adhd-off` 即可退出（参见 [INSTALL.md](/INSTALL.md)）。
 
 </details>
 
@@ -38,7 +38,7 @@ claude plugin install i-have-adhd@i-have-adhd
 <summary><strong>Codex</strong></summary>
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
+codex plugin marketplace add fisherrjd/i-have-adhd --ref main
 codex plugin add i-have-adhd@i-have-adhd
 ```
 
@@ -47,6 +47,14 @@ codex plugin add i-have-adhd@i-have-adhd
 </details>
 
 其他编程智能体的安装说明位于 [INSTALL.md](/INSTALL.md)。
+
+## 为什么要 fork
+
+[ayghri 的 i-have-adhd](https://github.com/ayghri/i-have-adhd) 曾是我的救星，但它需要针对我的大脑运作方式做些调整。仅仅缩短消息还不够：我有时需要被推一把，才能真正审阅眼前的内容，尤其是较大的部分，而不是心不在焉地点头附和。这个 fork 补上了这种强化：
+
+- **默认全程开启。** 规则集在每次会话开始时加载；运行 `touch ~/.claude/.i-have-adhd-off` 即可退出。
+- **审阅会话（规则 10）。** 决策项超过五个时，助手会提议逐项过一遍，而不是一次性抛出整个列表。
+- **不遗漏任何内容（规则 9）。** 被截断的列表必须把完整清单记录到文件中，这样“还有 15 项”就是一个文件路径，而不是一句空头承诺。
 
 ## 功能
 
@@ -85,7 +93,7 @@ codex plugin add i-have-adhd@i-have-adhd
 
 ## 规则
 
-共 10 条规则。完整内容见 [SKILL.md](/skills/i-have-adhd/SKILL.md)。
+共 11 条规则。完整内容见 [SKILL.md](/skills/i-have-adhd/SKILL.md)。
 
 1. 先说下一步行动。
 2. 多步骤任务使用编号。
@@ -95,8 +103,9 @@ codex plugin add i-have-adhd@i-have-adhd
 6. 给出明确的时间估计（用分钟，不说“一会儿”）。
 7. 让成果清晰可见。
 8. 客观陈述错误。
-9. 每个列表最多 5 项。
-10. 不写开场白、回顾或结束语。
+9. 每个列表最多 5 项；完整清单记录到文件中。
+10. 决策项超过 5 个时，提议逐项审阅。
+11. 不写开场白、回顾或结束语。
 
 ## 自定义
 
@@ -112,6 +121,8 @@ claude plugin install i-have-adhd@i-have-adhd
 重启 Claude Code，然后再次调用 `/i-have-adhd`。
 
 ## 致谢
+
+Fork 自 [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd)；整体结构和大部分规则集都出自他们之手。
 
 内容大致参考 J. Russell Ramsay 和 Anthony L. Rostain 所著的 *The Adult ADHD Tool Kit*。本技能针对 LLM 应如何回应进行了改编，而不是教人们如何安排日常生活。
 

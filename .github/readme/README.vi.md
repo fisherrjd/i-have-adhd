@@ -1,11 +1,11 @@
 <p align="center">
-    <a href="https://github.com/ayghri/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
+    <a href="https://github.com/fisherrjd/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
 </p>
 <p align="center">
   <strong align="center">Đầu ra thân thiện với người có ADHD. Không cần chẩn đoán ADHD!</strong>
 </p>
 <p align="center">
-  <a href="/LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="Giấy phép"></a>
+  <a href="/LICENSE"><img src="https://img.shields.io/github/license/fisherrjd/i-have-adhd?style=flat" alt="Giấy phép"></a>
 </p>
 
 <p align="center">
@@ -24,13 +24,13 @@
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
+claude plugin marketplace add fisherrjd/i-have-adhd
 claude plugin install i-have-adhd@i-have-adhd
 ```
 
 Sau đó gõ `/i-have-adhd`. Không cần clone về máy: Claude Code sẽ tự tải repo và cập nhật.
 
-Bạn muốn tự động bật trong mọi phiên làm việc? Chạy `touch ~/.claude/.i-have-adhd-always` (xem [INSTALL.md](/INSTALL.md)).
+Bản fork này mặc định luôn bật: mỗi phiên làm việc đều bắt đầu với bộ quy tắc đã được nạp sẵn. Để tắt, chạy `touch ~/.claude/.i-have-adhd-off` (xem [INSTALL.md](/INSTALL.md)).
 
 </details>
 
@@ -38,7 +38,7 @@ Bạn muốn tự động bật trong mọi phiên làm việc? Chạy `touch ~/
 <summary><strong>Codex</strong></summary>
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
+codex plugin marketplace add fisherrjd/i-have-adhd --ref main
 codex plugin add i-have-adhd@i-have-adhd
 ```
 
@@ -47,6 +47,14 @@ Sau đó, gõ `$i-have-adhd` để chủ động áp dụng phong cách đầu r
 </details>
 
 Hướng dẫn cài đặt cho các trợ lý lập trình khác có tại [INSTALL.md](/INSTALL.md).
+
+## Vì sao có bản fork này
+
+[i-have-adhd của ayghri](https://github.com/ayghri/i-have-adhd) là một cứu cánh, nhưng nó cần được tinh chỉnh cho phù hợp với cách bộ não của tôi hoạt động. Chỉ rút ngắn tin nhắn thôi là chưa đủ: đôi khi tôi cần một cú hích để thực sự xem xét kỹ những gì trước mắt, nhất là những phần lớn, thay vì chỉ gật gù cho qua. Bản fork này bổ sung sự củng cố đó:
+
+- **Mặc định luôn bật.** Bộ quy tắc được nạp khi bắt đầu mỗi phiên làm việc; để tắt, chạy `touch ~/.claude/.i-have-adhd-off`.
+- **Phiên rà soát (quy tắc 10).** Khi có quá năm hạng mục cần quyết định, trợ lý sẽ đề nghị đi qua từng mục một thay vì đổ cả danh sách ra.
+- **Không bỏ sót gì (quy tắc 9).** Danh sách bị giới hạn phải được ghi đầy đủ vào một file, để “còn 15 mục nữa” là một đường dẫn file, không phải một lời hứa.
 
 ## Skill này làm gì
 
@@ -85,7 +93,7 @@ Một skill dành cho trợ lý lập trình, giúp câu trả lời đi thẳng
 
 ## Các quy tắc
 
-10 quy tắc. Nội dung chi tiết tại [SKILL.md](/skills/i-have-adhd/SKILL.md).
+11 quy tắc. Nội dung chi tiết tại [SKILL.md](/skills/i-have-adhd/SKILL.md).
 
 1. Bắt đầu ngay bằng hành động tiếp theo.
 2. Đánh số các công việc gồm nhiều bước.
@@ -95,8 +103,9 @@ Một skill dành cho trợ lý lập trình, giúp câu trả lời đi thẳng
 6. Ước tính thời gian cụ thể (tính bằng phút, không nói chung chung).
 7. Làm nổi bật những kết quả đã đạt được.
 8. Báo lỗi một cách khách quan, thẳng thắn.
-9. Giới hạn danh sách tối đa 5 mục.
-10. Không lời mở đầu. Không tóm tắt. Không lời chào kết.
+9. Giới hạn danh sách tối đa 5 mục; ghi danh sách đầy đủ vào một file.
+10. Khi có quá 5 hạng mục cần quyết định, đề nghị một phiên rà soát từng mục một.
+11. Không lời mở đầu. Không tóm tắt. Không lời chào kết.
 
 ## Tùy chỉnh
 
@@ -112,6 +121,8 @@ claude plugin install i-have-adhd@i-have-adhd
 Khởi động lại Claude Code, sau đó gọi lại `/i-have-adhd`.
 
 ## Ghi nhận tác giả (Credits)
+
+Fork từ [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd); cấu trúc và phần lớn bộ quy tắc là của họ.
 
 Lấy cảm hứng một phần từ cuốn *The Adult ADHD Tool Kit* của J. Russell Ramsay và Anthony L. Rostain. Được điều chỉnh cho cách một LLM nên phản hồi, chứ không phải cách con người nên tổ chức một ngày của mình.
 

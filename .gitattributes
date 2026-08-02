@@ -1,0 +1,6 @@
+# Fork-owned docs: when the daily upstream sync merge conflicts on these,
+# keep the fork's version. The "ours" merge driver is configured in
+# .github/workflows/upstream-sync.yml (git config merge.ours.driver true).
+README.md merge=ours
+INSTALL.md merge=ours
+.github/readme/*.md merge=ours

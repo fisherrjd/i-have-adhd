@@ -1,11 +1,11 @@
 <p align="center">
-    <a href="https://github.com/ayghri/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
+    <a href="https://github.com/fisherrjd/i-have-adhd"> <img src="/logo.png" alt="i-have-adhd" width="140" /></a>
 </p>
 <p align="center">
   <strong align="center">ADHD 친화적인 출력. ADHD 진단은 필요 없어요!</strong>
 </p>
 <p align="center">
-  <a href="/LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="License"></a>
+  <a href="/LICENSE"><img src="https://img.shields.io/github/license/fisherrjd/i-have-adhd?style=flat" alt="License"></a>
 </p>
 
 <p align="center">
@@ -24,13 +24,13 @@
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
+claude plugin marketplace add fisherrjd/i-have-adhd
 claude plugin install i-have-adhd@i-have-adhd
 ```
 
 그런 다음 `/i-have-adhd`를 입력하세요. 로컬에 클론할 필요 없습니다. Claude Code가 저장소를 받아 최신 상태로 유지합니다.
 
-모든 세션에서 항상 활성화하고 싶다면 `touch ~/.claude/.i-have-adhd-always` ([INSTALL.md](/INSTALL.md) 참고).
+이 포크는 기본적으로 항상 켜져 있습니다. 모든 세션이 룰셋이 로드된 상태로 시작합니다. 끄고 싶다면 `touch ~/.claude/.i-have-adhd-off` ([INSTALL.md](/INSTALL.md) 참고).
 
 </details>
 
@@ -38,7 +38,7 @@ claude plugin install i-have-adhd@i-have-adhd
 <summary><strong>Codex</strong></summary>
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
+codex plugin marketplace add fisherrjd/i-have-adhd --ref main
 codex plugin add i-have-adhd@i-have-adhd
 ```
 
@@ -47,6 +47,14 @@ codex plugin add i-have-adhd@i-have-adhd
 </details>
 
 다른 코딩 에이전트 설치 방법은 [INSTALL.md](/INSTALL.md)를 참고하세요.
+
+## 왜 포크했나
+
+[ayghri의 i-have-adhd](https://github.com/ayghri/i-have-adhd)는 정말 큰 도움이 됐지만, 제 두뇌가 작동하는 방식에 맞게 손볼 필요가 있었습니다. 메시지를 짧게 만드는 것만으로는 부족했어요. 특히 분량이 큰 내용은 고개만 끄덕이며 넘기지 않고 정말로 검토하도록 가끔은 옆구리를 찔러줄 무언가가 필요합니다. 이 포크는 그 보강 장치를 더합니다:
+
+- **기본적으로 항상 켜짐.** 룰셋이 모든 세션 시작 시 로드됩니다. 끄려면 `touch ~/.claude/.i-have-adhd-off`.
+- **리뷰 세션 (규칙 10).** 결정할 항목이 5개를 넘으면, 어시스턴트가 목록을 한꺼번에 쏟아내는 대신 하나씩 짚어보자고 제안합니다.
+- **아무것도 누락하지 않음 (규칙 9).** 잘라낸 목록은 전체 내용을 파일에 기록해야 합니다. "15개 더 있어요"는 약속이 아니라 파일 경로여야 합니다.
 
 ## 무슨 일을 하나
 
@@ -83,7 +91,7 @@ codex plugin add i-have-adhd@i-have-adhd
 
 ## 규칙
 
-10가지 규칙. 전문은 [SKILL.md](/skills/i-have-adhd/SKILL.md)에 있습니다.
+11가지 규칙. 전문은 [SKILL.md](/skills/i-have-adhd/SKILL.md)에 있습니다.
 
 1. 다음 행동부터 말하기.
 2. 다단계 작업은 번호로.
@@ -93,8 +101,9 @@ codex plugin add i-have-adhd@i-have-adhd
 6. 시간은 분 단위로 정확하게 ("조금" ❌).
 7. 진전 사항을 눈에 띄게.
 8. 오류는 담백하게.
-9. 목록은 최대 5개 항목.
-10. 서론, 요약, 마무리 인사 없음.
+9. 목록은 최대 5개 항목, 전체 목록은 파일에 기록.
+10. 결정할 항목이 5개를 넘으면 하나씩 짚어보는 리뷰 세션 제안.
+11. 서론, 요약, 마무리 인사 없음.
 
 ## 커스터마이즈
 
@@ -110,6 +119,8 @@ claude plugin install i-have-adhd@i-have-adhd
 Claude Code를 재시작한 뒤 `/i-have-adhd`를 다시 호출하세요.
 
 ## 크레딧
+
+[ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd)에서 포크했습니다. 구조와 룰셋 대부분은 원저자의 것입니다.
 
 J. Russell Ramsay와 Anthony L. Rostain의 *The Adult ADHD Tool Kit*을 느슨하게 참고했습니다. 사람이 하루를 어떻게 꾸려야 하는가가 아니라 **LLM이 어떻게 응답해야 하는가**에 맞춰 재해석했습니다.
 

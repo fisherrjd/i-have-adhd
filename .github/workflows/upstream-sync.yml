@@ -4,7 +4,10 @@ name: sync upstream
 # automatic-update branch and opens a PR so CI (plugin load check, cursor
 # mirror check) gates the merge; auto-merge lands it once checks pass.
 # A conflicted merge fails the job instead of pushing anything — bad code
-# never reaches a branch. Uses a real merge, not squash: squashing would
+# never reaches a branch. Exception: fork-owned docs (README, INSTALL,
+# translations) are marked merge=ours in .gitattributes and auto-resolve
+# to the fork's version, so upstream doc edits never break the sync.
+# Uses a real merge, not squash: squashing would
 # drop upstream ancestry and re-conflict every future sync.
 # The patch-version bump makes `claude plugin update` pick up the sync and
 # guarantees the plugin-load check triggers on every sync PR.
@@ -28,6 +31,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config merge.ours.driver true
           git remote add upstream https://github.com/ayghri/i-have-adhd.git
           git fetch upstream main
           if git merge-base --is-ancestor upstream/main HEAD; then

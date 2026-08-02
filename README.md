@@ -5,7 +5,7 @@
   <strong align="center">ADHD-friendly outputs. No ADHD diagnosis needed!</strong>
 </p>
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="License"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/fisherrjd/i-have-adhd?style=flat" alt="License"></a>
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin marketplace add ayghri/i-have-adhd
+claude plugin marketplace add fisherrjd/i-have-adhd
 claude plugin install i-have-adhd@i-have-adhd
 ```
 
@@ -38,7 +38,7 @@ This fork is always-on by default: every session starts with the ruleset loaded.
 <summary><strong>Codex</strong></summary>
 
 ```bash
-codex plugin marketplace add ayghri/i-have-adhd --ref main
+codex plugin marketplace add fisherrjd/i-have-adhd --ref main
 codex plugin add i-have-adhd@i-have-adhd
 ```
 
@@ -47,6 +47,14 @@ Then type `$i-have-adhd` to apply the output style explicitly. The skill can als
 </details>
 
 Install instructions for other coding agents live in [INSTALL.md](./INSTALL.md).
+
+## Why this fork
+
+[ayghri's i-have-adhd](https://github.com/ayghri/i-have-adhd) was a life saver, but it needed tuning for how my brain works. Shorter messages alone were not enough: I need a kick sometimes to really review what's in front of me, especially the larger bits, instead of nodding along. This fork adds that reinforcement:
+
+- **Always-on by default.** The ruleset loads at the start of every session; opt out with `touch ~/.claude/.i-have-adhd-off`.
+- **Review sessions (rule 10).** Past five decision items, the assistant offers to walk them one at a time instead of dumping the list.
+- **Nothing gets dropped (rule 9).** Capped lists must record the full set to a file, so "there are 15 more" is a path, not a promise.
 
 ## What it does
 
@@ -95,7 +103,7 @@ A skill for your coding assistant that stops it from burying the answer. Action 
 6. Specific time estimates (minutes, not "a bit").
 7. Make wins visible.
 8. Matter-of-fact errors.
-9. Cap lists at 5 items.
+9. Cap lists at 5 items; record the full list to a file.
 10. Past 5 decision items, offer a one-at-a-time review session.
 11. No preamble. No recap. No closers.
 
@@ -113,6 +121,8 @@ claude plugin install i-have-adhd@i-have-adhd
 Restart Claude Code, then re-invoke `/i-have-adhd`.
 
 ## Credits
+
+Forked from [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd); the structure and most of the ruleset are theirs.
 
 Loosely based on *The Adult ADHD Tool Kit* by J. Russell Ramsay and Anthony L. Rostain. Adapted for how an LLM should respond, not how a human should organize their day.
 
