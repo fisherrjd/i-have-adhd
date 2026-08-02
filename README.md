@@ -30,7 +30,7 @@ claude plugin install i-have-adhd@i-have-adhd
 
 Then type `/i-have-adhd`. No local clone needed: Claude Code fetches the repo and keeps it updated.
 
-Want it on every session? `touch ~/.claude/.i-have-adhd-always` (see [INSTALL.md](./INSTALL.md)).
+This fork is always-on by default: every session starts with the ruleset loaded. Opt out with `touch ~/.claude/.i-have-adhd-off` (see [INSTALL.md](./INSTALL.md)).
 
 </details>
 

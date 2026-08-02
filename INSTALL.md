@@ -33,21 +33,23 @@ claude plugin marketplace remove i-have-adhd
 
 Or keep it installed and turn it off: `claude plugin disable i-have-adhd`.
 
-### Always-on (optional)
+### Always-on (default in this fork)
 
-A `SessionStart` hook loads the full ruleset at the start of every session, no `/i-have-adhd` needed:
-
-```bash
-touch ~/.claude/.i-have-adhd-always
-```
+A `SessionStart` hook loads the full ruleset at the start of every session, no `/i-have-adhd` needed. Installing the plugin turns this on.
 
 Back to on-demand:
 
 ```bash
-rm ~/.claude/.i-have-adhd-always
+touch ~/.claude/.i-have-adhd-off
 ```
 
-The hook only fires when the flag file exists, so installing the plugin changes nothing by itself. Honors `$CLAUDE_CONFIG_DIR` if you've moved your config dir. "stop adhd mode" still turns it off for the current session.
+Re-enable always-on:
+
+```bash
+rm ~/.claude/.i-have-adhd-off
+```
+
+The hook fires on every session unless the opt-out file exists. Honors `$CLAUDE_CONFIG_DIR` if you've moved your config dir. "stop adhd mode" still turns it off for the current session.
 
 </details>
 
@@ -559,7 +561,7 @@ Exceptions: explain fully when asked to explain. Confirm before destructive acti
 
 1. **Installed, not invoked.** In Claude Code, nothing happens: `SKILL.md` sets `disable-model-invocation: true`, so the model never sees the skill and never applies the rules on its own. That flag is Claude Code's own; Codex ships with implicit invocation allowed (see the README), and harnesses that implement the open Agent Skills spec load every skill's description at startup and may activate the skill themselves.
 2. **You type `/i-have-adhd`.** Rules on for that session. "stop adhd mode" or "normal mode" turns them off.
-3. **You touch `~/.claude/.i-have-adhd-always`** (Claude Code). A `SessionStart` hook loads the full ruleset from message one, every session.
+3. **You install the plugin** (Claude Code). A `SessionStart` hook loads the full ruleset from message one, every session, unless you opt out with `~/.claude/.i-have-adhd-off`.
 4. **You add the always-on snippet above** (other harnesses). Keeps the core rules in your agent's persistent context.
 
 In Claude Code, no middle ground: if you did not turn it on, it is off.
