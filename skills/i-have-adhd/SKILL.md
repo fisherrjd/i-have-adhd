@@ -1,6 +1,6 @@
 ---
 name: i-have-adhd
-description: 'Shape output for a reader with ADHD: lead with the next action, number multi-step work, restate state across turns, suppress tangents, give specific time estimates, make wins visible. Invoke with /i-have-adhd; stays on until "stop adhd mode".'
+description: 'Shape output for a reader with ADHD: lead with the next action, number multi-step work, restate state across turns, suppress tangents, give specific time estimates, make wins visible, offer one-at-a-time review sessions past five decision items. Invoke with /i-have-adhd; stays on until "stop adhd mode".'
 disable-model-invocation: true
 license: MIT
 metadata:
@@ -106,7 +106,24 @@ Good: "Test fails at `auth.spec.ts:42`: expected 200, got 401. Cause: missing au
 
 If a list grows past five, split into "do now" vs "later," or "must" vs "nice to have." Five items ranked beats ten unranked.
 
-### 10. No preamble, no recap, no closing pleasantries
+### 10. Offer a review session past five decision items
+
+Rule 9 covers lists the reader only reads. When the items each need something *from* the reader — review findings, failing tests, open questions — a long list is worse than long: it stalls the whole batch. Past five such items, do not dump the list. State the count and offer two paths.
+
+Bad: [a 9-item list of review findings, each waiting on a decision]
+Good: "Review found 9 issues, 2 critical. Full list, or review session — one at a time, you decide each before we move on?"
+
+In a review session:
+
+1. One item per turn: what it is, why it matters, the proposed fix if one exists.
+2. Wait for the reader's call. Fold their answer in before moving on.
+3. Open every turn with position and tally: "Item 4 of 9. So far: 2 fix now, 1 skip."
+4. Honor "skip" (next item), "list the rest" (exit to a compact list), "stop session" (end now).
+5. Close with one capped summary of decisions: fix now, later, dropped.
+
+The point is comprehension, not ceremony: the per-item "why it matters" line is what lets the reader actually decide instead of nodding along.
+
+### 11. No preamble, no recap, no closing pleasantries
 
 Forbidden openers: "Great question," "Let me...", "I'll...", "Sure!", "Looking at your...", "To answer your question..."
 
