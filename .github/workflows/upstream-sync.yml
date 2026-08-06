@@ -49,10 +49,12 @@ jobs:
           echo "pushed=true" >> "$GITHUB_OUTPUT"
       - name: Open PR and enable auto-merge
         if: steps.merge.outputs.pushed == 'true'
+        # -R pins gh to this fork: in a fork checkout gh defaults the PR base
+        # to the upstream parent repo, where SYNC_TOKEN has no access.
         run: |
-          pr=$(gh pr list --head automatic-update --state open --json url -q '.[0].url')
+          pr=$(gh pr list -R "$GITHUB_REPOSITORY" --head automatic-update --state open --json url -q '.[0].url')
           if [ -z "$pr" ]; then
-            pr=$(gh pr create --head automatic-update --title "automatic update" \
+            pr=$(gh pr create -R "$GITHUB_REPOSITORY" --head automatic-update --title "automatic update" \
               --body "Daily sync from ayghri/i-have-adhd main.")
           fi
-          gh pr merge --auto --merge --delete-branch "$pr"
+          gh pr merge -R "$GITHUB_REPOSITORY" --auto --merge --delete-branch "$pr"
