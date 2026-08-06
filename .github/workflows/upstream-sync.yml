@@ -20,12 +20,12 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.NIX_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.SYNC_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.NIX_TOKEN }}
+          token: ${{ secrets.SYNC_TOKEN }}
       - name: Merge upstream into automatic-update
         id: merge
         run: |
